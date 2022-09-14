@@ -3,5 +3,112 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "filmotheque": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/filmotheque",
+      "sourceRoot": "projects/filmotheque/src",
+      "prefix": "melodie",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/filmotheque",
+            "index": "projects/filmotheque/src/index.html",
+            "main": "projects/filmotheque/src/main.ts",
+            "polyfills": "projects/filmotheque/src/polyfills.ts",
+            "tsConfig": "projects/filmotheque/tsconfig.app.json",
+            "assets": [
+              "projects/filmotheque/src/favicon.ico",
+              "projects/filmotheque/src/assets"
+            ],
+            "styles": [
+              "node_modules/materialize-css/dist/css/materialize.min.css",
+              "projects/filmotheque/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/filmotheque/src/environments/environment.ts",
+                  "with": "projects/filmotheque/src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "projects/filmotheque/src/environments/api.ts",
+                  "with": "projects/filmotheque/src/environments/api.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "staging": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "filmotheque:build:production"
+            },
+            "development": {
+              "browserTarget": "filmotheque:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "filmotheque:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/filmotheque/src/test.ts",
+            "polyfills": "projects/filmotheque/src/polyfills.ts",
+            "tsConfig": "projects/filmotheque/tsconfig.spec.json",
+            "karmaConfig": "projects/filmotheque/karma.conf.js",
+            "assets": [
+              "projects/filmotheque/src/favicon.ico",
+              "projects/filmotheque/src/assets"
+            ],
+            "styles": [
+              "projects/filmotheque/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
   }
 }

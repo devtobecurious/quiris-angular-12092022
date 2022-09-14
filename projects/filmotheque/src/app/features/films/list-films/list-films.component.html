@@ -1,0 +1,28 @@
+<p>list-films works!</p>
+
+<span *ngIf="! filmsPresents"><i>Aucun film présent</i></span>
+
+<button (click)="ajouterLigne(3)">[ + ]</button>
+
+<table *ngIf="filmObservable$ | async as items " class="highlight">
+  <thead>
+    <tr>
+      <th>
+        Nom
+      </th>
+      <th>Annee</th>
+      <th>Notation</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- <tr *ngFor="let item of films">
+      <td>{{ item.nom }}</td>
+      <td>{{ item.annee }}</td>
+      <td>{{ item.notation }}</td>
+    </tr> -->
+    <app-ligne-film (clickToSuppr)="supprimerFilm($event)" titreBouton="Editer" [film]="item"
+      *ngFor="let item of items">
+    </app-ligne-film>
+  </tbody>
+</table>

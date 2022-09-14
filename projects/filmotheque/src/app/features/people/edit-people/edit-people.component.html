@@ -1,0 +1,8 @@
+{{ item | json}}
+
+<form>
+  <input type="text" name="nom" required [(ngModel)]="item.nom">
+
+</form>
+
+<button (click)="clickToAnnuler()">Annuler</button>
